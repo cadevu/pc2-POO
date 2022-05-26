@@ -31,7 +31,7 @@ public class RecebeSalario {
 			salario1.inss = 992.22;
 			
 		}
-		if(salario1.salario <=1903.98) {
+		if((salario1.salario-salario1.inss-(salario1.numDependentes*189.59)<1903.98)) {
 			salario1.irpf = 0.0;
 			salario1.parcela=0.0;
 			salario1.aliquota=0.0;
@@ -47,7 +47,6 @@ public class RecebeSalario {
 		}else {
 			salario1.aliquota = 0.275;
 			salario1.parcela = 869.36;
-			// na realidade é salariobruto - inss - dependentes 
 		}
 		salario1.irpf = (salario1.aliquota* (salario1.salario - salario1.inss - salario1.numDependentes*189.59)) - salario1.parcela;
 		salario1.salarioLiquido = salario1.salario - salario1.inss - salario1.irpf;
@@ -56,13 +55,10 @@ public class RecebeSalario {
 	}
 	while (!sal.equals("0"));
 	for (byte j = 0;j<i;j++) {
+		System.out.println("Salário "+(j+1)+":");
 		System.out.println(salarios[j].salario);
-		System.out.println(salarios[j].numDependentes);
-		System.out.println(salarios[j].inss);
-		System.out.println(salarios[j].aliquota);
-		System.out.println(salarios[j].parcela);
-		System.out.println(salarios[j].irpf);
 		System.out.println(Math.round(salarios[j].salarioLiquido*100.0)/100.0);
+		System.out.println("----------");
 	}
 	}
 
